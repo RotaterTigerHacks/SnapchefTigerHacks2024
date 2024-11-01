@@ -12,14 +12,13 @@
 
     </head>
     <body>
-       <div>Hello world!!!! &#128512</div>
- 
+        <div>Hello world!!!! &#128512</div>
+         <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;> </canvas>
+        <script>
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            ctx.font = "30px Arial";
+            ctx.fillText("Hello World", 10, 50);
+        </script>
     </body>
-    <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;> </canvas>
-    <script>
-        var c = document.getElementById("myCanvas");
-        var ctx = c.getContext("2d");
-        ctx.font = "30px Arial";
-        ctx.fillText("Hello World", 10, 50);
-    </script>
 </html>
