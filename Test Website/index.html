@@ -13,12 +13,14 @@
     </head>
     <body>
         <div>Hello world!!!! &#128512</div>
-         <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;> </canvas>
+        <canvas id="myCanvas">
+            Your browser does not support the canvas tag
+        </canvas>
         <script>
-            var c = document.getElementById("myCanvas");
-            var ctx = c.getContext("2d");
-            ctx.font = "30px Arial";
-            ctx.fillText("Hello World", 10, 50);
+            let canvas = document.getElementById("myCanvas");
+            let ctx = canvas.getContext("2d");
+            ctx.fillStyle = "#FF0000";
+            ctx.fillRect(0, 0, 80, 80);
         </script>
     </body>
 </html>
