@@ -15,7 +15,12 @@
        <div>Hello world!!!! &#128512</div>
  
     </body>
-    <canvas id="myCanvas" width="200" height="100" style="border:1px solid #010000;>
-        
+    <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;>
+        <script>
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            ctx.font = "30px Arial";
+            ctx.fillText("Hello World", 10, 50);
+        </script>
     </canvas>
 </html>
