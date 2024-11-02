@@ -17,7 +17,7 @@ window.onload = function() {
     }
 
     function draw() {
-        context.fillStyle = 'rgba(180, 100, 180, 1)';
+        context.fillStyle = 'rgba(180, 100, 220, 1)';
         context.fillRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < circles.length; i++) {
             let circle = circles[i];
@@ -34,7 +34,7 @@ window.onload = function() {
 
             context.beginPath();
             context.arc(circle.x, circle.y, 30+circle.dx*3, 0, 2 * Math.PI);
-            context.fillStyle = `rgba(250, 100, 180, 0.35)`;
+            context.fillStyle = `rgba(180, 100, 250, 0.35)`;
             context.fill();
             //context.stroke();
         }
