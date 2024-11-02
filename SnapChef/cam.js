@@ -4,7 +4,7 @@
     let streaming = false;
 
     const video = document.getElementById('video');
-    const canvas = document.getElementById('Mycanvas');
+    const canvas = document.getElementById('myCanvas');
     const photo = document.getElementById('photo');
     const startbutton = document.getElementById('startbutton');
 
