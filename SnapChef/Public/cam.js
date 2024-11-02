@@ -1,13 +1,15 @@
 (() => {
-    const width = window.innerWidth / 2;
-    let height = 0;
+    const width = window.innerWidth/2; // We will scale the photo width to this
+    let height = 0;    // This will be computed based on the input stream
     let streaming = false;
-    let show_picture = false;
+    var show_picture = false;
 
-    const video = document.getElementById('cam_video');
+    var video = document.createElement("video");
+    var image = document.createElement("image");
     const canvas = document.getElementById('cam_canvas');
     const startbutton = document.getElementById('camera_button');
-    
+    const link = document.getElementById("im_link");
+
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then((stream) => {
             video.srcObject = stream;
@@ -19,12 +21,22 @@
 
     video.addEventListener('canplay', (ev) => {
         if (!streaming) {
+        	var context = canvas.getContext('2d');
             height = video.videoHeight / (video.videoWidth / width);
             video.setAttribute('width', width);
             video.setAttribute('height', height);
             canvas.setAttribute('width', width);
             canvas.setAttribute('height', height);
             streaming = true;
+            (function loop() {
+              if (!show_picture)
+              {
+				context.drawImage(video, 0, 0, width, height);
+              	setTimeout(loop, 1000 / 30); // drawing at 30fps
+              }
+              else
+              	setTimeout(loop, 1000 / 30);
+            })()
         }
     }, false);
 
@@ -35,32 +47,28 @@
 
     function takePicture() {
         const context = canvas.getContext('2d');
-        if (width && height) {
+        show_picture = !show_picture;
+        if (width && height && show_picture) {
+	    startbutton.src="Images/retry.png";
             canvas.width = width;
             canvas.height = height;
             context.drawImage(video, 0, 0, width, height);
 
             const data = canvas.toDataURL('image/png');
-            sendImageToServer(data); // Send the image data to the backend
+	    image.setAttribute('src', data);
+	    link.href = "design.html?image=" + encodeURIComponent(data);
+        } else {
+	    startbutton.src="Images/camera.png";
+            clearPhoto();
         }
     }
 
-    // Function to send image to the backend
-    function sendImageToServer(imageData) {
-        fetch('/upload', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ image: imageData })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data.recipes); // Handle recipe results here
-            alert("Recipes: " + data.recipes);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+    function clearPhoto() {
+        const context = canvas.getContext('2d');
+        context.fillStyle = "#AAA";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        const data = canvas.toDataURL('image/png');
+	image.setAttribute('src', data);
     }
 })();

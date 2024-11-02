@@ -1,22 +1,32 @@
-app.post('/upload', async (req, res) => {
-    try {
-        // Extract the base64 image from the request
-        const base64Data = req.body.image.replace(/^data:image\/png;base64,/, "");
-        const imagePath = path.join(__dirname, 'uploads', 'captured_image.png');
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const { Configuration, OpenAIApi } = require('openai');
 
-        // Save the base64 image as a file
-        fs.writeFileSync(imagePath, base64Data, 'base64');
+const router = express.Router();
 
-        // Use a placeholder function to simulate image recognition
-        const detectedItem = await detectImage(imagePath);  // e.g., "apple"
-
-        // Generate recipes using OpenAI API
-        const recipes = await generateRecipes(detectedItem);
-
-        // Send the generated recipes back to the client
-        res.json({ recipes });
-    } catch (error) {
-        console.error("Error processing the image:", error);
-        res.status(500).send("Error processing the image");
-    }
+// OpenAI API Configuration
+const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
 });
+const openai = new OpenAIApi(configuration);
+
+// Function to generate recipes using OpenAI API
+async function generateRecipes(detectedItem) {
+    const response = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: `Generate a recipe using ${detectedItem}.`,
+        max_tokens: 150,
+    });
+    
+    return response.data.choices[0].text.trim();
+}
+
+// Endpoint for uploading images
+router.post('/upload', async (req, res) => {
+    // Implement your image upload logic here
+    // This is where you handle the image processing and recipe generation
+    res.send("Image upload logic goes here");
+});
+
+module.exports = router;

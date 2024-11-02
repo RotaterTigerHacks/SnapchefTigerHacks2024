@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fruit Finder</title>
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
+</head>
+<body>
     <center>
-      <main>
-        <h1>Welcome to Fruit Finder! &#128512;</h1>
-      </main>
-      <canvas id="cam_canvas" width="500" height="200" style="border:1px solid #000000;">
-        Your browser does not support the HTML canvas tag.
-      </canvas>
+        <main>
+            <h1>Welcome to Fruit Finder! &#128512;</h1>
+        </main>
 
-      <div class="camera">
-        <video id="cam_video">Video stream not available.</video>
-        <button id="camera_button" class="cam_button">
-          <img src="Images/camera_icon.png" alt="Take picture" width="200px" height="120px">
-        </button>
-      </div>
+        <canvas id="cam_canvas" width="500" height="200" style="border:1px solid #000000;">
+            Your browser does not support the HTML canvas tag.
+        </canvas>
 
-      <script src="app.js"></script>
-      <script src="cam.js"></script>
+        <div class="camera">
+            <video id="cam_video" width="500" height="200">Video stream not available.</video>
+            <button id="camera_button" class="cam_button">
+                <img src="Images/camera_icon.png" alt="Take picture" width="200px" height="120px">
+            </button>
+        </div>
+
+        <div id="recipe_results">
+            <h2>Suggested Recipes:</h2>
+            <ul id="recipe_list">
+                <!-- Recipes will be inserted here -->
+            </ul>
+        </div>
+
+        <form id="uploadForm" style="margin-top: 20px;">
+            <input type="file" id="imageUpload" accept="image/png, image/jpeg" required>
+            <input type="submit" value="Upload Image">
+        </form>
+
+        <div id="recipeOutput"></div> <!-- Where recipes will be displayed -->
     </center>
-  </body>
+
+    <script src="script.js"></script>
+    <script src="app.js"></script>
+    <script src="cam.js"></script>
+</body>
 </html>
