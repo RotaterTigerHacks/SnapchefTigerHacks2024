@@ -2,8 +2,9 @@
     const width = 320; // We will scale the photo width to this
     let height = 0;    // This will be computed based on the input stream
     let streaming = false;
+    var show_picture = false;
 
-    const video = document.getElementById('cam_video');
+    var video = document.createElement("video");
     const canvas = document.getElementById('cam_canvas');
     const startbutton = document.getElementById('camera_button');
 
@@ -18,12 +19,22 @@
 
     video.addEventListener('canplay', (ev) => {
         if (!streaming) {
+        	var context = canvas.getContext('2d');
             height = video.videoHeight / (video.videoWidth / width);
             video.setAttribute('width', width);
             video.setAttribute('height', height);
             canvas.setAttribute('width', width);
             canvas.setAttribute('height', height);
             streaming = true;
+            (function loop() {
+              if (!show_picture)
+              {
+				context.drawImage(video, 0, 0, width, height);
+              	setTimeout(loop, 1000 / 30); // drawing at 30fps
+              }
+              else
+              	setTimeout(loop, 1000 / 30);
+            })()
         }
     }, false);
 
@@ -34,7 +45,8 @@
 
     function takePicture() {
         const context = canvas.getContext('2d');
-        if (width && height) {
+        show_picture = !show_picture;
+        if (width && height && show_picture) {
             canvas.width = width;
             canvas.height = height;
             context.drawImage(video, 0, 0, width, height);
