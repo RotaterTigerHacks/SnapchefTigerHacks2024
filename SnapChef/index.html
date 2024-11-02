@@ -18,9 +18,19 @@
     <canvas id="cam_canvas" width="200" height="100" style="border:1px solid #000000;">
       Your browser does not support the HTML canvas tag.
     </canvas>
+    
+    .cam_button {
+       top:50%;
+       left:50%;
+       width:100px;
+       height:70px;
+       position: absolute;
+       z-index: 2;
+       background: orange; 
+       }
     <div class="camera">
         <video id="cam_video">Video stream not available.</video>
-        <button id="camera_button"><img src = "Images/camera_icon.png" alt = "nothing lol" width = 100px height = 100px></a></button>
+        <button id="camera_button" class="cam_button"><img src = "Images/camera_icon.png" alt = "nothing lol" width = 100px height = 70px></a></button>
     </div>
 
     <script src="cam.js"></script>
