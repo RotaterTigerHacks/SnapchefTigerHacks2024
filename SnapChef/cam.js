@@ -5,7 +5,7 @@
 
     const video = document.getElementById('cam_video');
     const canvas = document.getElementById('cam_canvas');
-    const startbutton = document.getElementById('startbutton');
+    const startbutton = document.getElementById('camera_button');
 
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then((stream) => {
