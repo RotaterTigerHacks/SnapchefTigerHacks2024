@@ -1,0 +1,23 @@
+{
+  "name": "snapcheftigerhacks2024",
+  "version": "1.0.0",
+  "description": "This project is to create a website that can scan and item such as a fruit, vegetable or something edible.  Which then will tell you what you have along with a recipe with a brief guide on how to make the recipe.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "fs": "^0.0.1-security",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.3.2",
+    "openai": "^4.70.2",
+    "path": "^0.12.7"
+  }
+}
