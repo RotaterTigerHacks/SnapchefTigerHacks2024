@@ -1,20 +1,58 @@
-var video = document.createElement('video');
-video.setAttribute('playsinline', '');
-video.setAttribute('autoplay', '');
-video.setAttribute('muted', '');
-video.style.width = '200px';
-video.style.height = '200px';
+(() => {
+    const width = 320; // We will scale the photo width to this
+    let height = 0;    // This will be computed based on the input stream
+    let streaming = false;
 
-/* Setting up the constraint */
-var facingMode = "user"; // Can be 'user' or 'environment' to access back or front camera (NEAT!)
-var constraints = {
-  audio: false,
-  video: {
-   facingMode: facingMode
-  }
-};
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const photo = document.getElementById('photo');
+    const startbutton = document.getElementById('startbutton');
 
-/* Stream it to video element */
-navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
-  video.srcObject = stream;
-});
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then((stream) => {
+            video.srcObject = stream;
+            video.play();
+        })
+        .catch((err) => {
+            console.error("An error occurred: " + err);
+        });
+
+    video.addEventListener('canplay', (ev) => {
+        if (!streaming) {
+            height = video.videoHeight / (video.videoWidth / width);
+            video.setAttribute('width', width);
+            video.setAttribute('height', height);
+            canvas.setAttribute('width', width);
+            canvas.setAttribute('height', height);
+            streaming = true;
+        }
+    }, false);
+
+    startbutton.addEventListener('click', (ev) => {
+        takePicture();
+        ev.preventDefault();
+    }, false);
+
+    function takePicture() {
+        const context = canvas.getContext('2d');
+        if (width && height) {
+            canvas.width = width;
+            canvas.height = height;
+            context.drawImage(video, 0, 0, width, height);
+
+            const data = canvas.toDataURL('image/png');
+            photo.setAttribute('src', data);
+        } else {
+            clearPhoto();
+        }
+    }
+
+    function clearPhoto() {
+        const context = canvas.getContext('2d');
+        context.fillStyle = "#AAA";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        const data = canvas.toDataURL('image/png');
+        photo.setAttribute('src', data);
+    }
+})();
