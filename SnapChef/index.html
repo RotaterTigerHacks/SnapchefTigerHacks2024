@@ -9,11 +9,6 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <style>
-      canvas
-      { display: block; position: absolute; top: 0; left: 0; }
-    </style>
-    <canvas id="backgroundCanvas"></canvas>
     <center>
     <main>
         <h1>Welcome to Fruit Finder! &#128512</h1>  
@@ -24,6 +19,14 @@
     </canvas>
     
     <style>
+      #backgroundCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Ensures the canvas stays in the background */
+      }
     .cam_button {
        display: flex;
        justify-content: center;
@@ -35,6 +38,8 @@
         <video id="cam_video">Video stream not available.</video>
         <button id="camera_button" class="cam_button"><img src = "Images/camera_icon.png" alt = "nothing lol" width = 200px height = 120px></a></button>
     </div>
+
+    <canvas id="backgroundCanvas"></canvas>
 
     <script src="cam.js"></script>
     <script src="background.js"></script>
