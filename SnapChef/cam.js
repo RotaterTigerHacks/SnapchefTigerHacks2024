@@ -1,11 +1,10 @@
-(() => {
+{
     const width = 320; // We will scale the photo width to this
     let height = 0;    // This will be computed based on the input stream
     let streaming = false;
 
     const video = document.getElementById('video');
-    const canvas = document.getElementById('myCanvas');
-    const photo = document.getElementById('photo');
+    const canvas = document.getElementById('canvas');
     const startbutton = document.getElementById('startbutton');
 
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
@@ -41,7 +40,6 @@
             context.drawImage(video, 0, 0, width, height);
 
             const data = canvas.toDataURL('image/png');
-            photo.setAttribute('src', data);
         } else {
             clearPhoto();
         }
@@ -53,6 +51,5 @@
         context.fillRect(0, 0, canvas.width, canvas.height);
 
         const data = canvas.toDataURL('image/png');
-        photo.setAttribute('src', data);
     }
-})();
+};
