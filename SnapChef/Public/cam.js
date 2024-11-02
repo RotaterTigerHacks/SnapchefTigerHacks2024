@@ -7,7 +7,7 @@
     var video = document.createElement("video");
     var image = document.createElement("image");
     const canvas = document.getElementById('cam_canvas');
-    const startbutton = document.getElementById('camera_button');
+    var startbutton = document.getElementById('camera_button');
     const link = document.getElementById("im_link");
 
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
@@ -58,7 +58,7 @@
 	    image.setAttribute('src', data);
 	    link.href = "design.html?image=" + encodeURIComponent(data);
         } else {
-	    startbutton.src="Images/camera.png";
+	    startbutton.src="Images/camera_icon.png";
             clearPhoto();
         }
     }
