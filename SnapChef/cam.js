@@ -1,5 +1,23 @@
+if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+  navigator.mediaDevices.getUserMedia({video: true})
+  video: {
+    width: {
+      min: 1280,
+      ideal: 1920,
+      max: 2560,
+    },
+    height: {
+      min: 720,
+      ideal: 1080,
+      max: 1440
+    },
+    facingMode: {
+      exact: 'environment'
+    }
+  }
+}
+
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
-ctx.beginPath();
-ctx.arc(95, 50, 40, 0, 2 * Math.PI);
-ctx.stroke();
+var img = document.getElementById("");
+ctx.drawImage(img, 10, 10);
