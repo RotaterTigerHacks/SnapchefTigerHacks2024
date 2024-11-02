@@ -8,6 +8,7 @@
     var image = document.createElement("image");
     const canvas = document.getElementById('cam_canvas');
     const startbutton = document.getElementById('camera_button');
+    const link = document.getElementById("im_link");
 
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then((stream) => {
@@ -54,6 +55,7 @@
 
             const data = canvas.toDataURL('image/png');
 	    image.setAttribute('src', data);
+	    link.href = "design.html?image=" + encodeURIComponent(data);
         } else {
             clearPhoto();
         }
