@@ -1,27 +1,20 @@
-async function getDevices() {
-  const devices = await navigator.mediaDevices.enumerateDevices();
-}
+var video = document.createElement('video');
+video.setAttribute('playsinline', '');
+video.setAttribute('autoplay', '');
+video.setAttribute('muted', '');
+video.style.width = '200px';
+video.style.height = '200px';
 
-if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-  navigator.mediaDevices.getUserMedia({video: true})
+/* Setting up the constraint */
+var facingMode = "user"; // Can be 'user' or 'environment' to access back or front camera (NEAT!)
+var constraints = {
+  audio: false,
   video: {
-    width: {
-      min: 1280,
-      ideal: 1920,
-      max: 2560,
-    },
-    height: {
-      min: 720,
-      ideal: 1080,
-      max: 1440
-    },
-    //facingMode: {
-      //exact: 'environment'
-    //}
+   facingMode: facingMode
   }
-}
+};
 
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
-var img = document.getElementById("");
-ctx.drawImage(img, 10, 10);
+/* Stream it to video element */
+navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
+  video.srcObject = stream;
+});
