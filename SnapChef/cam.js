@@ -3,8 +3,8 @@
     let height = 0;    // This will be computed based on the input stream
     let streaming = false;
 
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
+    const video = document.getElementById('cam_video');
+    const canvas = document.getElementById('cam_canvas');
     const startbutton = document.getElementById('startbutton');
 
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
