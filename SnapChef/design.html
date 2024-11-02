@@ -65,9 +65,12 @@
 
     <img id="dynamicImage" src="" alt="Transferred Image">
     <script>
+           const img = document.getElementById('dynamicImage');
            const params = new URLSearchParams(window.location.search);
            const imageSrc = params.get('image');
-           document.getElementById('dynamicImage').src = imageSrc;
+           img.width = 1000;
+           img.height = 600
+           img.src = imageSrc;
     </script>
 
     <!--
