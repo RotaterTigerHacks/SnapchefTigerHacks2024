@@ -5,6 +5,7 @@
     var show_picture = false;
 
     var video = document.createElement("video");
+    var image = document.createElement("image");
     const canvas = document.getElementById('cam_canvas');
     const startbutton = document.getElementById('camera_button');
 
@@ -52,6 +53,7 @@
             context.drawImage(video, 0, 0, width, height);
 
             const data = canvas.toDataURL('image/png');
+	    image.setAttribute('src', data);
         } else {
             clearPhoto();
         }
@@ -63,5 +65,6 @@
         context.fillRect(0, 0, canvas.width, canvas.height);
 
         const data = canvas.toDataURL('image/png');
+	image.setAttribute('src', data);
     }
 })();
