@@ -1,5 +1,5 @@
 (() => {
-    const width = window.innerWidth/1.6; // We will scale the photo width to this
+    const width = window.innerWidth/1.8; // We will scale the photo width to this
     let height = 0;    // This will be computed based on the input stream
     let streaming = false;
     var show_picture = false;
