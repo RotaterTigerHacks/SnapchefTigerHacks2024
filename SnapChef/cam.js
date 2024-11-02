@@ -1,3 +1,7 @@
+async function getDevices() {
+  const devices = await navigator.mediaDevices.enumerateDevices();
+}
+
 if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
   navigator.mediaDevices.getUserMedia({video: true})
   video: {
@@ -11,9 +15,9 @@ if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
       ideal: 1080,
       max: 1440
     },
-    facingMode: {
-      exact: 'environment'
-    }
+    //facingMode: {
+      //exact: 'environment'
+    //}
   }
 }
 
