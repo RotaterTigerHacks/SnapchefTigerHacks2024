@@ -63,7 +63,14 @@
     <h2>Image & Basic info</h2>
     <p>&#128071 This is where you can upload a pictures to find out what recipes you can make with it. &#x1F447</p>
 
-    
+    <img id="dynamicImage" src="" alt="Transferred Image">
+    <script>
+           const params = new URLSearchParams(window.location.search);
+           const imageSrc = params.get('image');
+           document.getElementById('dynamicImage').src = imageSrc;
+    </script>
+
+    <!--
     <canvas id="cam_canvas" width="600" height="250" style="border:1px solid #000000;">
         Your browser does not support the HTML canvas tag.
       </canvas>
@@ -76,6 +83,7 @@
         </div>
         
         <script src="cam.js"></script>
+           -->
     </center>
 
     <div class="bottomright">
