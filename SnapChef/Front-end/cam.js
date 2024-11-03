@@ -48,7 +48,6 @@
 
     donebutton.addEventListener('click', (ev) => {
         window.location.assign(link.href);
-        ev.preventDefault();
     }, false);
 
     function takePicture() {
