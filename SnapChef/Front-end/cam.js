@@ -47,6 +47,7 @@
     }, false);
 
     donebutton.addEventListener('click', (ev) => {
+	rungpt(data);
         window.location.assign(link.href);
         ev.preventDefault();
     }, false);
