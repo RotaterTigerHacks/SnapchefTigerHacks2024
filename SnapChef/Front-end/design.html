@@ -73,8 +73,6 @@ body{
     <center>
     <h2>Image</h2>
     <p>&#128071 This is where you can upload a pictures to find out what recipes you can make with it. &#x1F447</p>
-    <div id="result"></div>
-
     
     <img id="dynamicImage" src="" alt="Transferred Image" style="width:900px;height:600px;">
    
@@ -83,7 +81,6 @@ body{
            const params = new URLSearchParams(window.location.search);
            const imageSrc = params.get('image');
            img.src = imageSrc;
-           document.getElementById('result').innerText = "Hello!!";
     </script>
     </center>
 
