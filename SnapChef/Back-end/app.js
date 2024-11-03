@@ -13,22 +13,21 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json()); // For parsing application/json
-app.use(express.json()); // To ensure we can parse JSON bodies
-
-// OpenAI API Configuration
+app.use(express.json()); // Parses json bodies
+i
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
-// Set up multer for file uploads
+// File uploading
 const upload = multer({ dest: 'uploads/' }); // Define upload directory
 
 // Function to recognize objects in the image (placeholder)
 async function recognizeObjectFromImage(imagePath) {
-  // Implement image recognition logic here
-  // For example, you can use Google Vision or any other image recognition API
-  // For now, let's assume it returns a string
+  /* Implement image recognition logic here
+  For example, google vision, Doll-E 2. 
+  For now, let's assume it returns a string*/
   return "apple"; // Replace this with actual recognition logic
 }
 
@@ -41,14 +40,13 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     // Recognize the object in the image
     const recognizedObject = await recognizeObjectFromImage(imagePath);
 
-    // Optionally, delete the temporary image after processing
-    fs.unlinkSync(imagePath); // Clean up the uploaded file
+    fs.unlinkSync(imagePath); // cleans up the temporary image after processing
 
-    // Generate a recipe based on the recognized object
+    // Generate a food name with a link attached to it based on the recognized object
     const recipeResponse = await openai.createCompletion({
       model: "gpt-4o",
       prompt: `Generate a recipe link using ${recognizedObject}.`,
-      max_tokens: 100, // text parameter
+      max_tokens: 25, // text parameter
     });
     
     const recipe = recipeResponse.data.choices[0].text.trim();
@@ -65,7 +63,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4201;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
