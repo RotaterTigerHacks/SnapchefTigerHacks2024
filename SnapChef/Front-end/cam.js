@@ -9,7 +9,7 @@
     var donebutton = document.getElementById("done_button");
     const canvas = document.getElementById('cam_canvas');
     var startbutton = document.getElementById('camera_button');
-    const link = document.getElementById("im_link");
+    const link = document.createElement("link");
 
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then((stream) => {
