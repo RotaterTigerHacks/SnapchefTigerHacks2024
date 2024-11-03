@@ -5,28 +5,39 @@
 </head>
 <style>
 
+body{
+    background-image: url("https://cdn.pixabay.com/photo/2022/01/28/18/32/leaves-6975462_1280.png");
+
+}
 .cam_button {
        display: flex;
        justify-content: center;
        position: relative;
        top: -150px;
     }
-    
+
     h1 {
         color:aquamarine;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family:'Times New Roman', Times, serif;
         font-size: 300%;
     }
 
     h2 {
         background-color: aquamarine;
+        font-family: 'Times New Roman', Times, serif;
         font-size:200%;
+        border-bottom: 2px solid #000000;
+        border-radius: 25px;
     }
 
+
     p {
-        color:black;
+        color:honeydew;
         font-family: 'Times New Roman', Times, serif;
         font-size: 100%;
+    }
+    a{
+        color:honeydew;
     }
 
     .bottomright{
@@ -41,95 +52,54 @@
     }
     #section1{
         height: 800px;
-        background-color:ivory;
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbmSmQmT7dzoLlCixQBqIBUNiI85GLg_CYMg&s");
     }
     #section2 {
         height: 800px;
-        background-color:ivory;
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbmSmQmT7dzoLlCixQBqIBUNiI85GLg_CYMg&s");
     }
     img {
-        width:20%;
+        width:10%;
     }
 
 </style>
 <!--First page-->
-<body style ="background-color:black;">
-
+<body>
+<center>
 <h1>&#129367 Snap Chef &#x1F957</h1>
-
+</center>
 <div class="main" id="section1">
 
-
-    <h2>Image & Basic info</h2>
+    <center>
+    <h2>Image</h2>
     <p>&#128071 This is where you can upload a pictures to find out what recipes you can make with it. &#x1F447</p>
 
     <img id="dynamicImage" src="" alt="Transferred Image" style="width:900px;height:600px;">
+
     <script>
            const img = document.getElementById('dynamicImage');
            const params = new URLSearchParams(window.location.search);
            const imageSrc = params.get('image');
            img.src = imageSrc;
     </script>
-
+    </center>
 
     <div class="bottomright">
     <a href="#section2">&#127869 Click Me To Show Recipes &#x1F37D</a>
     </div>
 
-   
+
 </div>
 
-
-
 <!--Second page-->
-
+<center>
 <div class="main" id="section2">
     <h2>Recipes</h2>
     <a href="#section1">Click Me to go back to Image</a>
-
-    <img src="html5.gif" alt="Example"
-    width="128" height="128">
-
-
-   <div id ="recipe-link">
-
-   </div>
-
- 
-   
-    <script>
-     fetch('data.json')
-     .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.json(); // Parse the JSON response
-            })
-            .then(data => {
-                // Display the data in HTML
-                document.getElementById('recipe-link').innerHTML = `
-                    <p><a href = ${data.rlink1}>${data.rName1}</a></p>
-                    <p><a href = ${data.rlink2}>${data.rName2}</a></p>
-                    <p><a href = ${data.rlink3}>${data.rName3}</a></p>
-                `;
-            })
-            .catch(error => {
-                console.error("There was an error fetching the JSON data:", error);
-            });
-    </script>
-   
-
+    <img id="recipe1" src="" alt="Apple Image" style="width:400px;height:300px;">
+    <img id="recipe2" src="" alt="Banana Image" style="width:400px;height:300px;">
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
+<script src="recipe.js"></script>
+</center>
 </body>
+</html>
