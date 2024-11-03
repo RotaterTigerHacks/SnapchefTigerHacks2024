@@ -75,9 +75,13 @@ body{
     <p>&#128071 This is where you can upload a pictures to find out what recipes you can make with it. &#x1F447</p>
 
     
-    <canvas id="cam_canvas" width="700" height="300" style="border:1px solid #000000;">
-        Your browser does not support the HTML canvas tag.
-      </canvas>
+    <img id="dynamicImage" src="" alt="Transferred Image" style="width:900px;height:600px;">
+    <script>
+           const img = document.getElementById('dynamicImage');
+           const params = new URLSearchParams(window.location.search);
+           const imageSrc = params.get('image');
+           img.src = imageSrc;
+    </script>
     </center>
 
     <center>
