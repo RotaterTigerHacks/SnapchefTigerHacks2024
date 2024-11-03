@@ -32,7 +32,7 @@
             (function loop() {
               if (!show_picture)
               {
-				context.drawImage(video, 0, 0, width, height);
+		context.drawImage(video, 0, 0, width, height);
               	setTimeout(loop, 1000 / 30); // drawing at 30fps
               }
               else
@@ -47,7 +47,14 @@
     }, false);
 
     donebutton.addEventListener('click', (ev) => {
-	
+	const reader = new FileReader();
+	reader.onloadend = async function() {
+		const base64Image = reader.result.split(',')[1]; // Get base64 part of the data URL
+		try { const response = await fetch('https://api.openai.com/v1/images', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer YOUR_OPENAI_API_KEY` }, body: JSON.stringify({ image: base64Image, // Add other parameters here, depending on the OpenAI API requirements })
+																												});
+		const data = await response.json(); responseDiv.innerText = JSON.stringify(data, null, 2); } catch (error) { console.error('Error:', error);
+		responseDiv.innerText = 'Error sending image.'; }
+	};
         window.location.assign(link.href);
         ev.preventDefault();
     }, false);
