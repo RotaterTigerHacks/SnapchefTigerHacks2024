@@ -1,7 +1,15 @@
 import {config} from "dotenv"
 config()
 import OpenAI from "openai";
-const urlB = "https://i5.walmartimages.com/seo/Fresh-Gala-Apple-Each_f46d4fa7-6108-4450-a610-cc95a1ca28c5_3.38c2c5b2f003a0aafa618f3b4dc3cbbd.jpeg"
+
+var urlB = "https://i5.walmartimages.com/seo/Fresh-Gala-Apple-Each_f46d4fa7-6108-4450-a610-cc95a1ca28c5_3.38c2c5b2f003a0aafa618f3b4dc3cbbd.jpeg"
+var recipeName1;
+var recipeName2;
+var recipeName3;
+var recipelink1;
+var recipelink2;
+var recipelink3;
+
 
 async function rungpt(urlA){
     const openai = new OpenAI({apiKey: process.env.API_KEY});
@@ -57,32 +65,32 @@ async function rungpt(urlA){
         let x = 0;
         let y = 0;
         y = text.indexOf("#");
-        let recipeName1 = text.substring(x,y);
+        recipeName1 = text.substring(x,y);
         text = text.substring(y+1);
-        console.log(recipeName1);
+   
         y = text.indexOf("#");
-        let recipelink1 = text.substring(x,y);
+        recipelink1 = text.substring(x,y);
         text = text.substring(y+1);
-        console.log(recipelink1);
+  
         y = text.indexOf("#");
-        let recipeName2 = text.substring(x,y);
+        recipeName2 = text.substring(x,y);
         text = text.substring(y+1);
-        console.log(recipeName2);
+    
         y = text.indexOf("#");
-        let recipelink2 = text.substring(x,y);
+        recipelink2 = text.substring(x,y);
         text = text.substring(y+1);
-        console.log(recipelink2);
+      
         y = text.indexOf("#");
-        let recipeName3 = text.substring(x,y);
+        recipeName3 = text.substring(x,y);
         text = text.substring(y+1);
-        console.log(recipeName3);
+      
         y = text.indexOf("#");
-        let recipelink3 = text.substring(x,y);
+        recipelink3 = text.substring(x,y);
         text = text.substring(y+1);
-        console.log(recipelink3);
+        
     }
     else{
-        console.log("damn");
+        
     }
 }
 rungpt(urlB);
