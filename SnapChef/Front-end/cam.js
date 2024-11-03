@@ -6,7 +6,7 @@
 
     var video = document.createElement("video");
     var image = document.createElement("image");
-    var done_button = document.createElement("button");
+    var donebutton = document.getElementId("done_button");
     const canvas = document.getElementById('cam_canvas');
     var startbutton = document.getElementById('camera_button');
     const link = document.getElementById("im_link");
@@ -43,6 +43,11 @@
 
     startbutton.addEventListener('click', (ev) => {
         takePicture();
+        ev.preventDefault();
+    }, false);
+
+    donebutton.addEventListener('click', (ev) => {
+        window.location.assign(link.href);
         ev.preventDefault();
     }, false);
 
