@@ -46,7 +46,7 @@
         ev.preventDefault();
     }, false);
 
-    donebutton.addEventListener('click', {
+    donebutton.addEventListener('click', (ev) => {
         window.location.assign("https.google.com");
     }, false);
 
