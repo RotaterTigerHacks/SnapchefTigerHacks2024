@@ -55,6 +55,7 @@
             canvas.height = height;
             context.drawImage(video, 0, 0, width, height);
 	    done_button.innerText = 'Click Me';
+	    document.body.appendChild(done_button);
 
             const data = canvas.toDataURL('image/png');
 	    image.setAttribute('src', data);
