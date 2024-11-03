@@ -11,7 +11,7 @@ var recipelink2;
 var recipelink3;
 
 
-async function rungpt(urlA){
+export async function rungpt(urlA){
     const openai = new OpenAI({apiKey: process.env.API_KEY});
     const completion = await openai.chat.completions.create({
         model: "gpt-4o",
@@ -93,4 +93,4 @@ async function rungpt(urlA){
         
     }
 }
-rungpt(urlB);
+
