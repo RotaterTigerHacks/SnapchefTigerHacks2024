@@ -46,9 +46,9 @@
         ev.preventDefault();
     }, false);
 
-    donebutton.addEventListener('click', (ev) => {
-        window.location.assign(link.href);
-    }, false);
+    donebutton.addEventListener('click', {
+        window.location.assign("https.google.com");
+    });
 
     function takePicture() {
         const context = canvas.getContext('2d');
