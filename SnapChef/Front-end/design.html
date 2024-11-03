@@ -81,6 +81,12 @@ body{
            const params = new URLSearchParams(window.location.search);
            const imageSrc = params.get('image');
            img.src = imageSrc;
+           async function searchImage(query) {
+               const response = await fetch(`https://images.google.com/search?q=${encodeURIComponent(query)}`);
+               const data = await response.json();
+               img.src = data;
+           } // Example usage
+           searchImage('sunset beach');
     </script>
     </center>
 
