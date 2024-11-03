@@ -1,4 +1,3 @@
-import {rungpt} from 'SnapChef/Back-end/GptRecipe.js';
 (() => {
     const width = window.innerWidth/2; // We will scale the photo width to this
     let height = 0;    // This will be computed based on the input stream
@@ -48,7 +47,7 @@ import {rungpt} from 'SnapChef/Back-end/GptRecipe.js';
     }, false);
 
     donebutton.addEventListener('click', (ev) => {
-	rungpt(data);
+	
         window.location.assign(link.href);
         ev.preventDefault();
     }, false);
