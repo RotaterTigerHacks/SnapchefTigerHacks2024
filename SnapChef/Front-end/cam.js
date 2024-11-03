@@ -46,10 +46,7 @@
         ev.preventDefault();
     }, false);
 
-    donebutton.addEventListener('click', (ev) => {
-        takePicture();
-        ev.preventDefault();
-    }, false);
+    
 
     function takePicture() {
         const context = canvas.getContext('2d');
