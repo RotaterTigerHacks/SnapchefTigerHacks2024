@@ -84,7 +84,6 @@ body{
            const params = new URLSearchParams(window.location.search);
            const imageSrc = params.get('image');
            img.src = imageSrc;
-           document.getElementById('result').innerText = "Hello!!";
            img.addEventListener('change', async function(event) {
             const file = event.target.files[0];
             const img = new Image();
