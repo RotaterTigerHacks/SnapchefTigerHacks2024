@@ -47,7 +47,8 @@
     }, false);
 
     donebutton.addEventListener('click', (ev) => {
-        window.location.assign("https.google.com");
+        takePicture();
+        ev.preventDefault();
     }, false);
 
     function takePicture() {
