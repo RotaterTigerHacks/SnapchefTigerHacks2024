@@ -1,17 +1,16 @@
 import {config} from "dotenv"
 config()
 import OpenAI from "openai";
+import fs from 'fs';
+const filePath = './data.json';
+function setItem(key, value){
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf8')|| '{}');
+    data[key]= value;
+    fs.writeFileSync (filePath, JSON.stringify(data));
+}
+const urlB = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Pink_lady_and_cross_section.jpg/220px-Pink_lady_and_cross_section.jpg";
 
-var urlB = "https://i5.walmartimages.com/seo/Fresh-Gala-Apple-Each_f46d4fa7-6108-4450-a610-cc95a1ca28c5_3.38c2c5b2f003a0aafa618f3b4dc3cbbd.jpeg"
-var recipeName1 = "TEST TEXT";
-var recipeName2;
-var recipeName3;
-var recipelink1;
-var recipelink2;
-var recipelink3;
-
-
-export async function rungpt(urlA){
+async function rungpt(urlA){
     const openai = new OpenAI({apiKey: process.env.API_KEY});
     const completion = await openai.chat.completions.create({
         model: "gpt-4o",
@@ -65,32 +64,40 @@ export async function rungpt(urlA){
         let x = 0;
         let y = 0;
         y = text.indexOf("#");
-        recipeName1 = text.substring(x,y);
+        let recipeName1 = text.substring(x,y);
+        setItem("rName1", recipeName1);
         text = text.substring(y+1);
-   
+        console.log(recipeName1);
         y = text.indexOf("#");
-        recipelink1 = text.substring(x,y);
+        let recipelink1 = text.substring(x,y);
+        setItem("rLink1", recipelink1);
         text = text.substring(y+1);
-  
         y = text.indexOf("#");
-        recipeName2 = text.substring(x,y);
+        let recipeName2 = text.substring(x,y);
+        setItem("rName2", recipeName2);
         text = text.substring(y+1);
-    
         y = text.indexOf("#");
-        recipelink2 = text.substring(x,y);
+        let recipelink2 = text.substring(x,y);
+        setItem("rLink2", recipelink2);
         text = text.substring(y+1);
-      
         y = text.indexOf("#");
-        recipeName3 = text.substring(x,y);
+        let recipeName3 = text.substring(x,y);
+        setItem("rName3", recipeName3);
         text = text.substring(y+1);
-      
         y = text.indexOf("#");
-        recipelink3 = text.substring(x,y);
+        let recipelink3 = text.substring(x,y);
+        setItem("rLink3", recipelink3);
         text = text.substring(y+1);
-        
+       
     }
     else{
-        
+        setItem("notFood",0);
     }
 }
+export function setUrl(link){
+    urlB = link; 
+}
+rungpt(urlB);
+
+
 
