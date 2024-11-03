@@ -85,11 +85,12 @@ body{
            const imageSrc = params.get('image');
            img.src = imageSrc;
            img.addEventListener('change', async function(event) {
+               document.getElementById('result').innerText = "Heo!!";
             const file = event.target.files[0];
             const img = new Image();
+               document.getElementById('result').innerText = "Hello!!";
             img.src = URL.createObjectURL(file);
             img.onload = async function() {
-                document.getElementById('result').innerText = "Hello!!";
                 const model = await tf.loadLayersModel('https://tfhub.dev/google/tfjs-model/imagenet/mobilenet_v2_140_224/classification/3/default/1');
                 const tensor = tf.browser.fromPixels(img).resizeNearestNeighbor([224, 224]).toFloat().expandDims();
                 const predictions = model.predict(tensor);
