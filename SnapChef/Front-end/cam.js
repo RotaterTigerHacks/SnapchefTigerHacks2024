@@ -56,7 +56,7 @@
         const context = canvas.getContext('2d');
         show_picture = !show_picture;
         if (width && height && show_picture) {
-	    startbutton.src="Images/retry.png";
+	    //startbutton.src="Images/retry.png";
             canvas.width = width;
             canvas.height = height;
             context.drawImage(video, 0, 0, width, height);
@@ -67,7 +67,7 @@
 	    image.setAttribute('src', data);
 	    link.href = "design.html?image=" + encodeURIComponent(data);
         } else {
-	    startbutton.src="Images/camera_icon.png";
+	    //startbutton.src="Images/camera_icon.png";
             clearPhoto();
         }
     }
