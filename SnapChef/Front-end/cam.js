@@ -6,6 +6,7 @@
 
     var video = document.createElement("video");
     var image = document.createElement("image");
+    var done_button = document.createElement("button");
     const canvas = document.getElementById('cam_canvas');
     var startbutton = document.getElementById('camera_button');
     const link = document.getElementById("im_link");
@@ -53,6 +54,7 @@
             canvas.width = width;
             canvas.height = height;
             context.drawImage(video, 0, 0, width, height);
+	    done_button.innerText = 'Click Me';
 
             const data = canvas.toDataURL('image/png');
 	    image.setAttribute('src', data);
