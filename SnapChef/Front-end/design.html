@@ -76,18 +76,22 @@ body{
 
     
     <img id="dynamicImage" src="" alt="Transferred Image" style="width:900px;height:600px;">
+    <div id="result"></div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
     <script>
            const img = document.getElementById('dynamicImage');
            const params = new URLSearchParams(window.location.search);
            const imageSrc = params.get('image');
            img.src = imageSrc;
-           async function searchImage(query) {
-               const response = await fetch(`https://images.google.com/search?q=${encodeURIComponent(query)}`);
-               const data = await response.json();
-               img.src = data;
-           } // Example usage
-           searchImage('sunset beach');
+            img.onload = async function() {
+                const model = await tf.loadLayersModel('https://tfhub.dev/google/tfjs-model/imagenet/mobilenet_v2_140_224/classification/3/default/1');
+                const tensor = tf.browser.fromPixels(img).resizeNearestNeighbor([224, 224]).toFloat().expandDims();
+                const predictions = model.predict(tensor);
+                const topPrediction = tf.argMax(predictions, axis=1).dataSync()[0];
+                document.getElementById('result').innerText = `Predicted class: ${topPrediction}`;
+            };
+        });
+
     </script>
     </center>
 
