@@ -1,4 +1,5 @@
 (() => {
+    import {rungpt} from './javascript.js';
     const width = window.innerWidth/2; // We will scale the photo width to this
     let height = 0;    // This will be computed based on the input stream
     let streaming = false;
